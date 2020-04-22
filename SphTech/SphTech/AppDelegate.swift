@@ -15,6 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        if(CONTENT_MANAGER.copyDatabaseIfNeeded())
+        {
+            print("Prepare db success")
+        }
+        else
+        {
+            print("Prepare db fail")
+        }
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
         let navi = UINavigationController(rootViewController: YearReportViewController())
@@ -31,4 +40,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
+
 

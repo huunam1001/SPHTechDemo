@@ -112,7 +112,7 @@ class ContentManager: NSObject {
                 
                 if(httpRes.statusCode == 200 ) {
                     do {
-                        json = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
+                        json = try JSONSerialization.jsonObject(with: data!) as? [String:Any]
                         success = true;
                         message = nil;
                         
@@ -467,6 +467,77 @@ class ContentManager: NSObject {
         }
     }
     
-    // MARK:- Utils
+    // MARK:- SQL functions
     
+    func batchSaveToLocal(_ dataList:[ReportModel], callBack:@escaping (_ success:Bool, _ message:String?)->Void)
+    {
+        
+        var insertSql = "INSERT INTO DataDetail(Id, Year, quarter, Value) VALUES "
+        var idListString:String = ""
+        
+        for i in 0 ... dataList.count - 1
+        {
+            let record = dataList[i]
+            insertSql.append("('\(record.reportId)', '\(record.year)', '\(record.quarter)', '\(record.value)')")
+            
+            idListString.append("\(record.reportId)")
+            
+            if(i < dataList.count - 1)
+            {
+                insertSql.append(",")
+                
+                idListString.append(",")
+            }
+        }
+        
+        insertSql.append(";")
+        
+        let deleteSql = "DELETE FROM DataDetail WHERE Id In (\(idListString));"
+        
+        var sqlTransaction = ""
+        
+        sqlTransaction.append("BEGIN TRANSACTION;")
+        sqlTransaction.append("\n\n")
+        sqlTransaction.append(deleteSql)
+        sqlTransaction.append("\n\n")
+        sqlTransaction.append(insertSql)
+        sqlTransaction.append("\n\n")
+        sqlTransaction.append("COMMIT;")
+        
+        self.executeSql(sqlTransaction) { (success, errorMessage) in
+            
+            callBack(success, errorMessage)
+        }
+    }
+    
+    func getAllReportFromLocal(callBack:@escaping (_ success:Bool, _ reports:[ReportModel]?, _ message:String?)->Void)
+    {
+        let selectSql = "SELECT Id, Year, quarter, Value FROM DataDetail WHERE year >= 2008 AND year <= 2018"
+        
+        self.selectDataWithSql(selectSql) { (success, queryStatement, errorMessage) in
+            
+            if(success && queryStatement != nil)
+            {
+                var reportList = [ReportModel]()
+                
+                while sqlite3_step(queryStatement!) == SQLITE_ROW
+                {
+                    let report = ReportModel()
+                    
+                    report.reportId = Int(sqlite3_column_int(queryStatement, 0))
+                    report.year = Int(sqlite3_column_int(queryStatement, 1))
+                    report.quarter = Int(sqlite3_column_int(queryStatement, 2))
+                    report.value = sqlite3_column_double(queryStatement, 3)
+                    
+                    reportList.append(report)
+                }
+                
+                callBack(true, reportList, nil)
+            }
+            else
+            {
+                callBack(false, nil, errorMessage)
+            }
+        }
+    }
 }

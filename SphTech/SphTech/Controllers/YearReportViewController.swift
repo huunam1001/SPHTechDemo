@@ -46,10 +46,12 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
             if(success)
             {
                 self.filterReport(reports!)
+                
+                self.saveDataToLocal(reports!)
             }
             else
             {
-                print("user local database")
+                self.useOfflineMode()
             }
         }
     }
@@ -88,6 +90,48 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         tblData.reloadData()
+    }
+    
+    private func saveDataToLocal(_ dataList:[ReportModel])
+    {
+        CONTENT_MANAGER.batchSaveToLocal(dataList) { (success, errorMessage) in
+            
+            if(!success)
+            {
+                let arlert = UIAlertController.init(title: "Error", message: "Error save data to local", preferredStyle: .alert)
+                
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                arlert.addAction(okButton)
+                
+                self.present(arlert, animated: true, completion: nil)
+            }
+            else
+            {
+                print("Synced successfully")
+            }
+        }
+    }
+    
+    private func useOfflineMode()
+    {
+        CONTENT_MANAGER.getAllReportFromLocal { (success, reports, errorMessage) in
+            
+            if(success)
+            {
+                self.filterReport(reports!)
+            }
+            else
+            {
+                let arlert = UIAlertController.init(title: "Error", message: "Error get local data.\nPlease try again later", preferredStyle: .alert)
+                
+                let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+                
+                arlert.addAction(okButton)
+                
+                self.present(arlert, animated: true, completion: nil)
+            }
+        }
     }
     
     // MARK:- TableView's delegate & data source

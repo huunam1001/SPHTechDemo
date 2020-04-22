@@ -12,7 +12,7 @@ class ReportModel: NSObject {
     
     var reportId: Int = 0
     var year:Int = 0
-    var quater:Int = 0
+    var quarter:Int = 0
     var value:Double = 0.0
     
     class func reportModelFromDictionary(_ dict: [String:Any]) -> ReportModel
@@ -31,7 +31,7 @@ class ReportModel: NSObject {
             if(dateComponents.count == 2)
             {
                 report.year = Int(dateComponents[0]) ?? 0
-                report.quater = Int(dateComponents[1]) ?? 0
+                report.quarter = Int(dateComponents[1]) ?? 0
             }
         }
         
