@@ -1,9 +1,9 @@
 //
 //  Constant.swift
-//  Acom
+//  SphTech
 //
-//  Created by Ninh Huu Nam on 2/18/20.
-//  Copyright © 2020 Ninh Huu Nam. All rights reserved.
+//  Created by ninh nam on 4/22/20.
+//  Copyright © 2020 ninh nam. All rights reserved.
 //
 
 import Foundation
