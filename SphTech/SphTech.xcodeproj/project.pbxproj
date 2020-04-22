@@ -23,6 +23,7 @@
 		689AC1FC245028170089A9F6 /* YearReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1FB245028170089A9F6 /* YearReportModel.swift */; };
 		689AC2002450328E0089A9F6 /* YearReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1FE2450328E0089A9F6 /* YearReportTableViewCell.swift */; };
 		689AC2012450328E0089A9F6 /* YearReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */; };
+		689AC20324504FA80089A9F6 /* ReportModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC20224504FA80089A9F6 /* ReportModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		689AC1FB245028170089A9F6 /* YearReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportModel.swift; sourceTree = "<group>"; };
 		689AC1FE2450328E0089A9F6 /* YearReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportTableViewCell.swift; sourceTree = "<group>"; };
 		689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YearReportTableViewCell.xib; sourceTree = "<group>"; };
+		689AC20224504FA80089A9F6 /* ReportModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				689AC1C3244FD48E0089A9F6 /* SphTechTests.swift */,
+				689AC20224504FA80089A9F6 /* ReportModelTests.swift */,
 				689AC1C5244FD48E0089A9F6 /* Info.plist */,
 			);
 			path = SphTechTests;
@@ -353,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				689AC1C4244FD48E0089A9F6 /* SphTechTests.swift in Sources */,
+				689AC20324504FA80089A9F6 /* ReportModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,8 +558,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R82V53H6Z6;
 				INFOPLIST_FILE = SphTechTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -575,8 +580,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R82V53H6Z6;
 				INFOPLIST_FILE = SphTechTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -594,8 +600,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R82V53H6Z6;
 				INFOPLIST_FILE = SphTechUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -603,6 +613,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuuNam.SphTechUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SphTech;
@@ -613,8 +625,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R82V53H6Z6;
 				INFOPLIST_FILE = SphTechUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -622,6 +638,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuuNam.SphTechUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = SphTech;
