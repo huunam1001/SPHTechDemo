@@ -392,6 +392,10 @@ class ContentManager: NSObject {
         sqlite3_close(db)
     }
     
+    /// Execute an sql statement
+    /// - Parameters:
+    ///   - sqlString: Sql statement
+    ///   - callBack: success - status of this process, message: message when finishing this process
     func executeSql(_ sqlString:String, callBack:@escaping (_ success:Bool, _ message:String)->Void)
     {
         /// Change to background thread
@@ -429,6 +433,10 @@ class ContentManager: NSObject {
         }
     }
     
+    /// Select data from SQlite
+    /// - Parameters:
+    ///   - sqlString: Sql statement
+    ///   - callBack: success - status of this process, queryStatement = nil when success = false, message: message when finishing this process
     func selectDataWithSql(_ sqlString:String, callBack:@escaping (_ success:Bool, _ queryStatement:OpaquePointer?, _ message:String)->Void)
     {
         /// Change to background thread

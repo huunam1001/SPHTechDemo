@@ -17,17 +17,25 @@ class YearReportModel: NSObject {
     
     func addReport(_ report:ReportModel)
     {
-        self.year = report.year
-        self.totalValue += report.value
+        let findQuarterIndex = quartes.firstIndex(where: { $0.quarter == report.quarter }) ?? -1
         
-        if(quartes.count > 0 && !hasQuarterDecrease)
+        if(quartes.count < 4
+            && findQuarterIndex == -1
+            && report.quarter <= 4
+            && report.quarter > 0)
         {
-            if(quartes[quartes.count - 1].value > report.value)
+            self.year = report.year
+            self.totalValue += report.value
+            
+            if(quartes.count > 0 && !hasQuarterDecrease)
             {
-                hasQuarterDecrease = true
+                if(quartes[quartes.count - 1].value > report.value)
+                {
+                    hasQuarterDecrease = true
+                }
             }
+            
+            self.quartes.append(report)
         }
-        
-        self.quartes.append(report)
     }
 }
