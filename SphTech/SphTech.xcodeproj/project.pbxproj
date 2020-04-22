@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		689AC1AD244FD4860089A9F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1AC244FD4860089A9F6 /* AppDelegate.swift */; };
-		689AC1B1244FD4870089A9F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1B0244FD4870089A9F6 /* ViewController.swift */; };
-		689AC1B4244FD4870089A9F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1B2244FD4870089A9F6 /* Main.storyboard */; };
 		689AC1B6244FD48D0089A9F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1B5244FD48D0089A9F6 /* Assets.xcassets */; };
 		689AC1B9244FD48D0089A9F6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1B7244FD48D0089A9F6 /* LaunchScreen.storyboard */; };
 		689AC1C4244FD48E0089A9F6 /* SphTechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1C3244FD48E0089A9F6 /* SphTechTests.swift */; };
@@ -18,6 +16,8 @@
 		689AC1E0244FE89E0089A9F6 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1DF244FE89E0089A9F6 /* ProgressHud.swift */; };
 		689AC1EC244FF3B10089A9F6 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1EB244FF3B10089A9F6 /* Constant.swift */; };
 		689AC1EE244FFDB40089A9F6 /* MobileNetwork.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1ED244FFDB30089A9F6 /* MobileNetwork.sqlite */; };
+		689AC1F2245003040089A9F6 /* YearReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1F0245003040089A9F6 /* YearReportViewController.swift */; };
+		689AC1F3245003040089A9F6 /* YearReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1F1245003040089A9F6 /* YearReportViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +40,6 @@
 /* Begin PBXFileReference section */
 		689AC1A9244FD4860089A9F6 /* SphTech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SphTech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		689AC1AC244FD4860089A9F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		689AC1B0244FD4870089A9F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		689AC1B3244FD4870089A9F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		689AC1B5244FD48D0089A9F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		689AC1B8244FD48D0089A9F6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		689AC1BA244FD48D0089A9F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +54,8 @@
 		689AC1E5244FEF3C0089A9F6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		689AC1EB244FF3B10089A9F6 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		689AC1ED244FFDB30089A9F6 /* MobileNetwork.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MobileNetwork.sqlite; sourceTree = "<group>"; };
+		689AC1F0245003040089A9F6 /* YearReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportViewController.swift; sourceTree = "<group>"; };
+		689AC1F1245003040089A9F6 /* YearReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YearReportViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +110,7 @@
 				689AC1AC244FD4860089A9F6 /* AppDelegate.swift */,
 				689AC1E1244FEBE30089A9F6 /* Db */,
 				689AC1DC244FD9F10089A9F6 /* Common */,
-				689AC1B0244FD4870089A9F6 /* ViewController.swift */,
-				689AC1B2244FD4870089A9F6 /* Main.storyboard */,
+				689AC1EF245002DE0089A9F6 /* Controllers */,
 				689AC1B5244FD48D0089A9F6 /* Assets.xcassets */,
 				689AC1B7244FD48D0089A9F6 /* LaunchScreen.storyboard */,
 				689AC1BA244FD48D0089A9F6 /* Info.plist */,
@@ -161,6 +160,15 @@
 				689AC1E5244FEF3C0089A9F6 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		689AC1EF245002DE0089A9F6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				689AC1F0245003040089A9F6 /* YearReportViewController.swift */,
+				689AC1F1245003040089A9F6 /* YearReportViewController.xib */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,10 +276,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				689AC1F3245003040089A9F6 /* YearReportViewController.xib in Resources */,
 				689AC1B9244FD48D0089A9F6 /* LaunchScreen.storyboard in Resources */,
 				689AC1B6244FD48D0089A9F6 /* Assets.xcassets in Resources */,
 				689AC1EE244FFDB40089A9F6 /* MobileNetwork.sqlite in Resources */,
-				689AC1B4244FD4870089A9F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,11 +304,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				689AC1B1244FD4870089A9F6 /* ViewController.swift in Sources */,
 				689AC1DE244FDA6B0089A9F6 /* ContentManager.swift in Sources */,
 				689AC1EC244FF3B10089A9F6 /* Constant.swift in Sources */,
 				689AC1E0244FE89E0089A9F6 /* ProgressHud.swift in Sources */,
 				689AC1AD244FD4860089A9F6 /* AppDelegate.swift in Sources */,
+				689AC1F2245003040089A9F6 /* YearReportViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,14 +344,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		689AC1B2244FD4870089A9F6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				689AC1B3244FD4870089A9F6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		689AC1B7244FD48D0089A9F6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

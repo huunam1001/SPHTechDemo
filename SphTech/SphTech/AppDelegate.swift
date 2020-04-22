@@ -14,21 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         
-        let url = "https://data.gov.sg/api/action/datastore_search?resource_id=a807b7ab-6cad-4aa6-87d0-e283a7353a0f&limit=100"
-//
-//        ContentManager.shareManager.sendBaseRequest_(urlString: url, params: nil, method: "GET", isRaw: true, showHud: true) { (success, dict, errorMessage) in
-//
-//        }
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        CONTENT_MANAGER.copyDatabaseIfNeeded()
+        let navi = UINavigationController(rootViewController: YearReportViewController())
         
-        let sql = "Select * From DataDetail"
-        
-        CONTENT_MANAGER.selectDataWithSql(sql) { (success, qeryStatement, message) in
-            
-            print("Finish")
+        self.window?.rootViewController = navi
+        self.window?.backgroundColor = UIColor.white
+        self.window?.makeKeyAndVisible()
+                
+        if #available(iOS 13, *)
+        {
+            self.window?.overrideUserInterfaceStyle = UIUserInterfaceStyle.light
         }
         
         return true
