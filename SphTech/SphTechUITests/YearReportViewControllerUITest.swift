@@ -31,7 +31,7 @@ class YearReportViewControllerUITest: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-    
+        
     func testOutlet()
     {
         let app = XCUIApplication()
@@ -43,15 +43,32 @@ class YearReportViewControllerUITest: XCTestCase {
         XCTAssertNotNil(app.tables["tblData"])
     }
     
-//    func testTableFrame()
-//    {
-//        let app = XCUIApplication()
-//        
-//        let table = app.tables["tblData"]
-//        
-//        let frame = table.frame
-//        
-//        XCTAssertEqual(frame.origin.x, 0)
-//    }
+    func testOnlyTable()
+    {
+        let app = XCUIApplication()
+        
+        XCTAssertEqual(app.tables.count, 1)
+    }
+    
+    func testSrcollTable()
+    {
+        let app = XCUIApplication()
+        
+        let topCoordinate = app.statusBars.firstMatch.coordinate(withNormalizedOffset: .zero)
+        let myElement = app.staticTexts["2017"].coordinate(withNormalizedOffset: .zero)
+        // drag from element to top of screen (status bar)
+        myElement.press(forDuration: 0.1, thenDragTo: topCoordinate)
+    }
+    
+    func testTapOnCells()
+    {
+        let app = XCUIApplication()
+        
+        for i in 0...10
+        {
+            app.staticTexts["\(2008 + i)"].tap()
+        }
+    }
 
+    
 }

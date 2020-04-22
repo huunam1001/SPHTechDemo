@@ -18,7 +18,7 @@ class YearReportTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.selectionStyle = .none
+//        self.selectionStyle = .none
         
         lblValue.font = UIFont.boldSystemFont(ofSize: 18)
         lblValue.textAlignment = .right
