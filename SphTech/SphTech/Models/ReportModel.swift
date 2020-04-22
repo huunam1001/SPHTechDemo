@@ -31,7 +31,7 @@ class ReportModel: NSObject {
             if(dateComponents.count == 2)
             {
                 report.year = Int(dateComponents[0]) ?? 0
-                report.quater = Int(dateComponents[0]) ?? 0
+                report.quater = Int(dateComponents[1]) ?? 0
             }
         }
         

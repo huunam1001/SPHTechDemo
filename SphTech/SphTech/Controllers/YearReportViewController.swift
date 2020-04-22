@@ -6,11 +6,14 @@
 //  Copyright © 2020 ninh nam. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class YearReportViewController: UIViewController {
     
     @IBOutlet weak var tblData:UITableView!
+    
+    var yearReportList = [YearReportModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +41,48 @@ class YearReportViewController: UIViewController {
             
             if(success)
             {
-                print("save data to db and show UI")
+                self.filterReport(reports!)
             }
             else
             {
                 print("user local database")
             }
         }
+    }
+    
+    func filterReport(_ baseReport:[ReportModel])
+    {
+        let sortedList = baseReport.sorted { $0.reportId < $1.reportId}
+        
+        for reportRecord in sortedList
+        {
+            if(reportRecord.year >= 2008 && reportRecord.year <= 2018)
+            {
+                var foundYear: YearReportModel?  = nil
+                
+                for year in yearReportList
+                {
+                    if(reportRecord.year == year.year)
+                    {
+                        foundYear = year
+                        
+                        break
+                    }
+                }
+                
+                if(foundYear == nil)
+                {
+                    foundYear = YearReportModel()
+                    foundYear!.addReport(reportRecord)
+                    yearReportList.append(foundYear!)
+                }
+                else
+                {
+                    foundYear!.addReport(reportRecord)
+                }
+            }
+        }
+        
+        tblData.reloadData()
     }
 }
