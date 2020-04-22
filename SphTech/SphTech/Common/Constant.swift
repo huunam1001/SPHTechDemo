@@ -22,6 +22,11 @@ let NAVIGATION_HEIGHT               =   44 as CGFloat
 let MARGIN_SIZE                     =   5 as CGFloat
 let IPHONE_5_HEIGHT                 =   568 as CGFloat
 let BOTTOM_DEVICE_MARGIN            =   STATUS_HEIGHT > 20 ? 34 : 0 as CGFloat
+let MARGIN                          =   5 as CGFloat
+
+// MARK:- String cosntants
+
+let CELL_IDENTIFIER                 =   "Cell"
 
 // MARK:- DB name
 

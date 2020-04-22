@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class YearReportViewController: UIViewController {
+class YearReportViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tblData:UITableView!
     
@@ -31,6 +31,10 @@ class YearReportViewController: UIViewController {
         tblData.width = SCREEN_WIDTH;
         tblData.top = NAVIGATION_HEIGHT + STATUS_HEIGHT
         tblData.height = SCREEN_HEIGHT - BOTTOM_DEVICE_MARGIN - tblData.top
+        
+        tblData.register(UINib(nibName: "YearReportTableViewCell", bundle: nil), forCellReuseIdentifier: CELL_IDENTIFIER)
+        tblData.delegate = self
+        tblData.dataSource = self
         
         self.getReportFromSerever()
     }
@@ -84,5 +88,30 @@ class YearReportViewController: UIViewController {
         }
         
         tblData.reloadData()
+    }
+    
+    // MARK:- TableView's delegate & data source
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return yearReportList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tblData.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER) as! YearReportTableViewCell
+        cell.width = tblData.width
+        
+        cell.setCellWithYearReport(yearReportList[indexPath.row])
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if(yearReportList[indexPath.row].hasQuarterDecrease)
+        {
+            print("You can show detail with this record")
+        }
     }
 }

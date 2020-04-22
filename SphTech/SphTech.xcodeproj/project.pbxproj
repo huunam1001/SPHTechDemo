@@ -21,6 +21,8 @@
 		689AC1F5245004FA0089A9F6 /* UIView.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1F4245004FA0089A9F6 /* UIView.Extension.swift */; };
 		689AC1F8245019280089A9F6 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1F7245019280089A9F6 /* ReportModel.swift */; };
 		689AC1FC245028170089A9F6 /* YearReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1FB245028170089A9F6 /* YearReportModel.swift */; };
+		689AC2002450328E0089A9F6 /* YearReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1FE2450328E0089A9F6 /* YearReportTableViewCell.swift */; };
+		689AC2012450328E0089A9F6 /* YearReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		689AC1F4245004FA0089A9F6 /* UIView.Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.Extension.swift; sourceTree = "<group>"; };
 		689AC1F7245019280089A9F6 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		689AC1FB245028170089A9F6 /* YearReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportModel.swift; sourceTree = "<group>"; };
+		689AC1FE2450328E0089A9F6 /* YearReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportTableViewCell.swift; sourceTree = "<group>"; };
+		689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YearReportTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,7 @@
 				689AC1E1244FEBE30089A9F6 /* Db */,
 				689AC1DC244FD9F10089A9F6 /* Common */,
 				689AC1F6245018BE0089A9F6 /* Models */,
+				689AC1FD245032630089A9F6 /* Views */,
 				689AC1EF245002DE0089A9F6 /* Controllers */,
 				689AC1B5244FD48D0089A9F6 /* Assets.xcassets */,
 				689AC1B7244FD48D0089A9F6 /* LaunchScreen.storyboard */,
@@ -186,6 +191,15 @@
 				689AC1FB245028170089A9F6 /* YearReportModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		689AC1FD245032630089A9F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				689AC1FE2450328E0089A9F6 /* YearReportTableViewCell.swift */,
+				689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				689AC1F3245003040089A9F6 /* YearReportViewController.xib in Resources */,
+				689AC2012450328E0089A9F6 /* YearReportTableViewCell.xib in Resources */,
 				689AC1B9244FD48D0089A9F6 /* LaunchScreen.storyboard in Resources */,
 				689AC1B6244FD48D0089A9F6 /* Assets.xcassets in Resources */,
 				689AC1EE244FFDB40089A9F6 /* MobileNetwork.sqlite in Resources */,
@@ -325,6 +340,7 @@
 				689AC1EC244FF3B10089A9F6 /* Constant.swift in Sources */,
 				689AC1E0244FE89E0089A9F6 /* ProgressHud.swift in Sources */,
 				689AC1AD244FD4860089A9F6 /* AppDelegate.swift in Sources */,
+				689AC2002450328E0089A9F6 /* YearReportTableViewCell.swift in Sources */,
 				689AC1F2245003040089A9F6 /* YearReportViewController.swift in Sources */,
 				689AC1F5245004FA0089A9F6 /* UIView.Extension.swift in Sources */,
 				689AC1FC245028170089A9F6 /* YearReportModel.swift in Sources */,
