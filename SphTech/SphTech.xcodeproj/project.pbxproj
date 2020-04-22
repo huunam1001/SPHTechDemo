@@ -16,6 +16,8 @@
 		689AC1CF244FD48E0089A9F6 /* SphTechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1CE244FD48E0089A9F6 /* SphTechUITests.swift */; };
 		689AC1DE244FDA6B0089A9F6 /* ContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1DD244FDA6B0089A9F6 /* ContentManager.swift */; };
 		689AC1E0244FE89E0089A9F6 /* ProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1DF244FE89E0089A9F6 /* ProgressHud.swift */; };
+		689AC1EC244FF3B10089A9F6 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1EB244FF3B10089A9F6 /* Constant.swift */; };
+		689AC1EE244FFDB40089A9F6 /* MobileNetwork.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1ED244FFDB30089A9F6 /* MobileNetwork.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		689AC1D0244FD48E0089A9F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		689AC1DD244FDA6B0089A9F6 /* ContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentManager.swift; sourceTree = "<group>"; };
 		689AC1DF244FE89E0089A9F6 /* ProgressHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHud.swift; sourceTree = "<group>"; };
+		689AC1E5244FEF3C0089A9F6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		689AC1EB244FF3B10089A9F6 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		689AC1ED244FFDB30089A9F6 /* MobileNetwork.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MobileNetwork.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +90,7 @@
 				689AC1C2244FD48E0089A9F6 /* SphTechTests */,
 				689AC1CD244FD48E0089A9F6 /* SphTechUITests */,
 				689AC1AA244FD4860089A9F6 /* Products */,
+				689AC1E4244FEF3B0089A9F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				689AC1AC244FD4860089A9F6 /* AppDelegate.swift */,
+				689AC1E1244FEBE30089A9F6 /* Db */,
 				689AC1DC244FD9F10089A9F6 /* Common */,
 				689AC1B0244FD4870089A9F6 /* ViewController.swift */,
 				689AC1B2244FD4870089A9F6 /* Main.storyboard */,
@@ -133,10 +140,27 @@
 		689AC1DC244FD9F10089A9F6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				689AC1EB244FF3B10089A9F6 /* Constant.swift */,
 				689AC1DD244FDA6B0089A9F6 /* ContentManager.swift */,
 				689AC1DF244FE89E0089A9F6 /* ProgressHud.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		689AC1E1244FEBE30089A9F6 /* Db */ = {
+			isa = PBXGroup;
+			children = (
+				689AC1ED244FFDB30089A9F6 /* MobileNetwork.sqlite */,
+			);
+			path = Db;
+			sourceTree = "<group>";
+		};
+		689AC1E4244FEF3B0089A9F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				689AC1E5244FEF3C0089A9F6 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +231,7 @@
 				TargetAttributes = {
 					689AC1A8244FD4860089A9F6 = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 					689AC1BE244FD48E0089A9F6 = {
 						CreatedOnToolsVersion = 11.4;
@@ -245,6 +270,7 @@
 			files = (
 				689AC1B9244FD48D0089A9F6 /* LaunchScreen.storyboard in Resources */,
 				689AC1B6244FD48D0089A9F6 /* Assets.xcassets in Resources */,
+				689AC1EE244FFDB40089A9F6 /* MobileNetwork.sqlite in Resources */,
 				689AC1B4244FD4870089A9F6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +298,7 @@
 			files = (
 				689AC1B1244FD4870089A9F6 /* ViewController.swift in Sources */,
 				689AC1DE244FDA6B0089A9F6 /* ContentManager.swift in Sources */,
+				689AC1EC244FF3B10089A9F6 /* Constant.swift in Sources */,
 				689AC1E0244FE89E0089A9F6 /* ProgressHud.swift in Sources */,
 				689AC1AD244FD4860089A9F6 /* AppDelegate.swift in Sources */,
 			);
@@ -446,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R82V53H6Z6;
 				INFOPLIST_FILE = SphTech/Info.plist;
@@ -456,6 +484,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuuNam.SphTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -465,6 +495,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R82V53H6Z6;
 				INFOPLIST_FILE = SphTech/Info.plist;
@@ -475,6 +506,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuuNam.SphTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

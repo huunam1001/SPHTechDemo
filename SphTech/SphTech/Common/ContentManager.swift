@@ -8,10 +8,14 @@
 
 import UIKit
 import SystemConfiguration
+import SQLite3
 
 class ContentManager: NSObject {
     
     // MARK:- Internal variables
+    
+    var db:OpaquePointer? = nil
+    var dbPath:String = ""
     
     fileprivate var numberOfDeviceLoading  = 0
     fileprivate var numberOfHudLoading  = 0
@@ -296,4 +300,92 @@ class ContentManager: NSObject {
     {
         ProgressHud.shareHud.hide()
     }
+    
+    // MARK:- Databse Copy & Checking
+    
+    /// Copy database from project to document of sandbox
+    /// - Returns: True - copy success or database is existed. False - problem with copy process
+    func copyDatabaseIfNeeded() -> Bool
+    {
+        if(!self.checkDatabase())
+        {
+            return self.copyDatabase()
+        }
+        else
+        {
+            return true
+        }
+    }
+    
+    func checkDatabase() -> Bool
+    {
+        /// Get document folder of application
+        let documentPath =  NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        
+        /// Build database path
+        dbPath = documentPath + "/" + DB_NAME
+        
+        return FileManager.default.fileExists(atPath: dbPath)
+    }
+    
+    func copyDatabase() -> Bool
+    {
+        /// Get db path in this project
+        let localPath = Bundle.main.resourcePath! + "/" + DB_NAME
+        
+        var success = false
+        
+        /// Copy db from this project to document of sandbox
+        do {
+            try FileManager.default.copyItem(atPath: localPath, toPath: dbPath)
+            
+            success = true
+        }
+        catch
+        {
+            print("Error copy db file")
+        }
+        
+        return success
+    }
+    
+    // MARK:- SQL base function
+    
+    func closeDb()
+    {
+        sqlite3_close(db)
+    }
+    
+    func executeSql(_ sqlString:String, callBack:@escaping (_ success:Bool, _ message:String)->Void)
+    {
+        /// Change to background thread
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+            
+            var success = false
+            var message = ""
+            
+            if(sqlite3_open(self.dbPath, &self.db) == SQLITE_OK)
+            {
+                if(sqlite3_exec(self.db, sqlString, nil, nil, nil) != SQLITE_OK)
+                {
+                    message = "Fail to execute sql: \(sqlString)"
+                }
+                else
+                {
+                    success = true
+                    message = "succed to execute sql: \(sqlString)"
+                }
+            }
+            else
+            {
+                message = "Can't open databae"
+            }
+            /// Change to UI thread
+            DispatchQueue.main.async(execute: {
+                
+                callBack(success, message)
+            })
+        }
+    }
+    
 }
