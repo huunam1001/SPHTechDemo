@@ -19,6 +19,7 @@
 		689AC1F2245003040089A9F6 /* YearReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1F0245003040089A9F6 /* YearReportViewController.swift */; };
 		689AC1F3245003040089A9F6 /* YearReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1F1245003040089A9F6 /* YearReportViewController.xib */; };
 		689AC1F5245004FA0089A9F6 /* UIView.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1F4245004FA0089A9F6 /* UIView.Extension.swift */; };
+		689AC1F8245019280089A9F6 /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1F7245019280089A9F6 /* ReportModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		689AC1F0245003040089A9F6 /* YearReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportViewController.swift; sourceTree = "<group>"; };
 		689AC1F1245003040089A9F6 /* YearReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YearReportViewController.xib; sourceTree = "<group>"; };
 		689AC1F4245004FA0089A9F6 /* UIView.Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.Extension.swift; sourceTree = "<group>"; };
+		689AC1F7245019280089A9F6 /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				689AC1AC244FD4860089A9F6 /* AppDelegate.swift */,
 				689AC1E1244FEBE30089A9F6 /* Db */,
 				689AC1DC244FD9F10089A9F6 /* Common */,
+				689AC1F6245018BE0089A9F6 /* Models */,
 				689AC1EF245002DE0089A9F6 /* Controllers */,
 				689AC1B5244FD48D0089A9F6 /* Assets.xcassets */,
 				689AC1B7244FD48D0089A9F6 /* LaunchScreen.storyboard */,
@@ -172,6 +175,14 @@
 				689AC1F1245003040089A9F6 /* YearReportViewController.xib */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		689AC1F6245018BE0089A9F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				689AC1F7245019280089A9F6 /* ReportModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +324,7 @@
 				689AC1AD244FD4860089A9F6 /* AppDelegate.swift in Sources */,
 				689AC1F2245003040089A9F6 /* YearReportViewController.swift in Sources */,
 				689AC1F5245004FA0089A9F6 /* UIView.Extension.swift in Sources */,
+				689AC1F8245019280089A9F6 /* ReportModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,8 @@
 import UIKit
 
 class YearReportViewController: UIViewController {
+    
+    @IBOutlet weak var tblData:UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +23,27 @@ class YearReportViewController: UIViewController {
     private func setUpView()
     {
         self.title = "Year Report"
+        
+        tblData.contentInsetAdjustmentBehavior = .never
+        tblData.width = SCREEN_WIDTH;
+        tblData.top = NAVIGATION_HEIGHT + STATUS_HEIGHT
+        tblData.height = SCREEN_HEIGHT - BOTTOM_DEVICE_MARGIN - tblData.top
+        
+        self.getReportFromSerever()
+    }
+    
+    private func getReportFromSerever()
+    {
+        CONTENT_MANAGER.getTotalReport { (success, reports, errroMessage) in
+            
+            if(success)
+            {
+                print("save data to db and show UI")
+            }
+            else
+            {
+                print("user local database")
+            }
+        }
     }
 }

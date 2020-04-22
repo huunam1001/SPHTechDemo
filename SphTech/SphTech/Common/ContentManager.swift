@@ -24,6 +24,42 @@ class ContentManager: NSObject {
     
     static let shareManager = ContentManager()
     
+    // MARK:- API Calling
+    
+    func getTotalReport(callBack:@escaping (_ success:Bool,_ reports:[ReportModel]?,_ message:String?)->Void)
+    {
+        self.sendBaseRequest(urlString: API_REPORT, params: nil, method: HTTP_GET, isRaw: false, showHud: true) { (success, dict, errorMessage) in
+            
+            if(success)
+            {
+                var reportList: [ReportModel]? = nil
+                var success:Bool = false
+                var message:String? = "Server return wrong data"
+                
+                if let resultDict = dict![KEY_RESULT] as? [String: Any]
+                {
+                    if let recordDict = resultDict[KEY_RECORDS] as? [[String: Any]]
+                    {
+                        success = true
+                        message = nil
+                        reportList = [ReportModel]()
+                        
+                        for tempDict in recordDict
+                        {
+                            reportList?.append(ReportModel.reportModelFromDictionary(tempDict))
+                        }
+                    }
+                }
+                
+                callBack(success, reportList, message)
+            }
+            else
+            {
+                callBack(false, nil, errorMessage)
+            }
+        }
+    }
+    
     // MARK:- Base API request
     
     /// Call all API
@@ -34,7 +70,7 @@ class ContentManager: NSObject {
     ///   - isRaw: Just affect with http method is differ GET. And this value depends on API input param defination
     ///   - showHud: Show loading when API calling
     ///   - completion: Data callback
-    func sendBaseRequest_(urlString: String,params:[String:Any]?,method:String,isRaw:Bool,showHud:Bool,completion:@escaping (_ success:Bool,_ response:Any?,_ message:String?)->Void)
+    func sendBaseRequest(urlString: String,params:[String:Any]?,method:String,isRaw:Bool,showHud:Bool,completion:@escaping (_ success:Bool,_ response:[String:Any]?,_ message:String?)->Void)
     {
         if(!self.isConnectedToNetwork())
         {
@@ -62,7 +98,7 @@ class ContentManager: NSObject {
             
             var success: Bool
             var message: String?
-            var json: Any?
+            var json: [String:Any]?
             
             if error != nil {
                 success = false
@@ -76,7 +112,7 @@ class ContentManager: NSObject {
                 
                 if(httpRes.statusCode == 200 ) {
                     do {
-                        json = try JSONSerialization.jsonObject(with: data!)
+                        json = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
                         success = true;
                         message = nil;
                         
@@ -430,5 +466,7 @@ class ContentManager: NSObject {
             })
         }
     }
+    
+    // MARK:- Utils
     
 }

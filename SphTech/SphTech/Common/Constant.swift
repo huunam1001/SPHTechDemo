@@ -27,5 +27,22 @@ let BOTTOM_DEVICE_MARGIN            =   STATUS_HEIGHT > 20 ? 34 : 0 as CGFloat
 
 let DB_NAME                         =   "MobileNetwork.sqlite"
 
+// MARK:- API URL
+
+let API_REPORT                      =   "https://data.gov.sg/api/action/datastore_search?resource_id=a807b7ab-6cad-4aa6-87d0-e283a7353a0f&limit=100"
+
+// MARK:- API Method
+
+let HTTP_GET                        =   "GET"
+let HTTP_POST                       =   "POST"
+
+// MARK:- Json Keys
+
+let KEY_RESULT                      =   "result"
+let KEY_RECORDS                     =   "records"
+let KEY_ID                          =   "_id"
+let KEY_QUARTER                     =   "quarter"
+let KEY_VOLUME                      =   "volume_of_mobile_data"
+
 
 
