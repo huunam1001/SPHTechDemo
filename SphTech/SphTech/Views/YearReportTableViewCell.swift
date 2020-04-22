@@ -48,6 +48,8 @@ class YearReportTableViewCell: UITableViewCell {
             lblValue.textColor = UIColor.red
             
             imgStatus.isHidden = false
+            
+            self.selectionStyle = .gray
         }
         else
         {
@@ -55,6 +57,8 @@ class YearReportTableViewCell: UITableViewCell {
             lblValue.textColor = UIColor.black
             
             imgStatus.isHidden = true
+            
+            self.selectionStyle = .none
         }
     }
 
