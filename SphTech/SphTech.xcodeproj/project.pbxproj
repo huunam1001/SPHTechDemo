@@ -24,6 +24,7 @@
 		689AC2002450328E0089A9F6 /* YearReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC1FE2450328E0089A9F6 /* YearReportTableViewCell.swift */; };
 		689AC2012450328E0089A9F6 /* YearReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */; };
 		689AC20324504FA80089A9F6 /* ReportModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC20224504FA80089A9F6 /* ReportModelTests.swift */; };
+		689AC205245052B10089A9F6 /* YearReportModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC204245052B10089A9F6 /* YearReportModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		689AC1FE2450328E0089A9F6 /* YearReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportTableViewCell.swift; sourceTree = "<group>"; };
 		689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YearReportTableViewCell.xib; sourceTree = "<group>"; };
 		689AC20224504FA80089A9F6 /* ReportModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModelTests.swift; sourceTree = "<group>"; };
+		689AC204245052B10089A9F6 /* YearReportModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				689AC1C3244FD48E0089A9F6 /* SphTechTests.swift */,
 				689AC20224504FA80089A9F6 /* ReportModelTests.swift */,
+				689AC204245052B10089A9F6 /* YearReportModelTests.swift */,
 				689AC1C5244FD48E0089A9F6 /* Info.plist */,
 			);
 			path = SphTechTests;
@@ -356,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				689AC1C4244FD48E0089A9F6 /* SphTechTests.swift in Sources */,
+				689AC205245052B10089A9F6 /* YearReportModelTests.swift in Sources */,
 				689AC20324504FA80089A9F6 /* ReportModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
