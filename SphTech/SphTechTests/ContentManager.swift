@@ -51,5 +51,50 @@ class ContentManager: XCTestCase {
             print("Timed out")
         }
     }
+    
+    func testBaseApiFail()
+    {
+        let e = expectation(description: "API finish process")
+        
+        let urlString = "https://zzzzzzzdata.gov.sg/api/action/datastore_search?resource_id=a807b7ab-6cad-4aa6-87d0-e283a7353a0f&limit=100"
+        
+        CONTENT_MANAGER.sendBaseRequest(urlString: urlString, params: nil, method: HTTP_GET, isRaw: false, showHud: false) { (success, dict, errorMessage) in
+            
+            XCTAssertFalse(success)
+            XCTAssertNil(dict)
+            XCTAssertNotNil(errorMessage)
+            
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 30.0) { (error) in
+            print("Timed out")
+        }
+    }
+    
+    func testGetTotalReportFromServer()
+    {
+        let e = expectation(description: "API finish process")
+        
+        CONTENT_MANAGER.getTotalReport { (success, reports, errorMessage) in
+            
+            if(success)
+            {
+                XCTAssertNotNil(reports)
+                XCTAssertNil(errorMessage)
+            }
+            else
+            {
+                XCTAssertNil(reports)
+                XCTAssertNotNil(errorMessage)
+            }
+            
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 30.0) { (error) in
+            print("Timed out")
+        }
+    }
 
 }
