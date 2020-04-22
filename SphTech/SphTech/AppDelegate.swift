@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         ContentManager.shareManager.sendBaseRequest_(urlString: url, params: nil, method: "GET", isRaw: true, showHud: true) { (success, dict, errorMessage) in
             
-            print("Dict: \(dict)")
         }
         
         return true

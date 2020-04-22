@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import SystemConfiguration
 
 class ContentManager: NSObject {
+    
+    // MARK:- Internal variables
+    
+    fileprivate var numberOfDeviceLoading  = 0
+    fileprivate var numberOfHudLoading  = 0
 
     // MARK:- Singleton
     
@@ -26,6 +32,25 @@ class ContentManager: NSObject {
     ///   - completion: Data callback
     func sendBaseRequest_(urlString: String,params:[String:Any]?,method:String,isRaw:Bool,showHud:Bool,completion:@escaping (_ success:Bool,_ response:Any?,_ message:String?)->Void)
     {
+        if(!self.isConnectedToNetwork())
+        {
+            completion(false, nil, "No internet connection")
+            
+            return
+        }
+        
+        /**
+         * Show network loading
+         */
+        self.setNetworkActivityIndicatorVisible(true)
+        
+        /**
+         * Check if showHud flag was set, show hud loading
+         */
+        if(showHud)
+        {
+            self.setHudLoaderVisible(true)
+        }
 
         let request = self.createRequest(urlString, params: params, method: method, isRaw: isRaw)
         
@@ -65,8 +90,28 @@ class ContentManager: NSObject {
                 }
             }
             
+            /**
+            * Change app to main thread
+            */
             DispatchQueue.main.async {
-                completion(success,json,message)
+                
+                /**
+                 * Hide network loading
+                 */
+                self.setNetworkActivityIndicatorVisible(false)
+                
+                /**
+                 * Check if showHud flag was set, hide hud loading
+                 */
+                if(showHud)
+                {
+                    self.setHudLoaderVisible(false)
+                }
+                
+                /**
+                 * Send datas to implementer
+                 */
+                completion(success, json, message)
             }
         }
         
@@ -152,5 +197,103 @@ class ContentManager: NSObject {
         }
         
         return request
+    }
+    
+    // MARK:- Network checking
+    
+    private func isConnectedToNetwork() -> Bool {
+        
+        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
+        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
+            return false
+        }
+        
+        // Working for Cellular and WIFI
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        let ret = (isReachable && !needsConnection)
+        
+        return ret
+    }
+    
+    // MARK:- Show/hide default newtork loader of device
+    
+    private func setNetworkActivityIndicatorVisible(_ visible:Bool)
+    {
+        if(visible)
+        {
+            numberOfDeviceLoading += 1
+        }
+        else
+        {
+            numberOfDeviceLoading -= 1
+        }
+        
+        DispatchQueue.main.async {
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = (self.numberOfDeviceLoading > 0)
+        }
+    }
+    
+    // MARK:- - Show/hide hud loader when call API
+    
+    func setHudLoaderVisible(_ setVisible: Bool)
+    {
+        if (setVisible)
+        {
+            numberOfHudLoading += 1
+        }
+        else
+        {
+            numberOfHudLoading -= 1
+        }
+        if (numberOfHudLoading > 0)
+        {
+            self.showHud()
+        }
+        else
+        {
+            self.hideHud()
+        }
+    }
+    
+    private func showHud()
+    {
+        if (UIApplication.shared.keyWindow != nil)
+        {
+            let window = UIApplication.shared.keyWindow!;
+            window.makeKeyAndVisible()
+            ProgressHud.shareHud.showInView(view: window)
+        }
+        else if (UIApplication.shared.delegate?.window != nil)
+        {
+            let window = ((UIApplication.shared.delegate?.window)!)!;
+            window.makeKeyAndVisible();
+            ProgressHud.shareHud.showInView(view: window);
+        }
+        else
+        {
+            let array = UIApplication.shared.windows;
+            if (array.count != 0)
+            {
+                array[0].makeKeyAndVisible();
+                ProgressHud.shareHud.showInView(view: array[0]);
+            }
+        }
+    }
+    
+    private func hideHud()
+    {
+        ProgressHud.shareHud.hide()
     }
 }
