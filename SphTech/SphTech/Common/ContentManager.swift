@@ -26,7 +26,7 @@ class ContentManager: NSObject {
     
     // MARK:- API Calling
     
-    func getTotalReport(callBack:@escaping (_ success:Bool,_ reports:[ReportModel]?,_ message:String?)->Void)
+    func getTotalReportFromServer(callBack:@escaping (_ success:Bool,_ reports:[ReportModel]?,_ message:String?)->Void)
     {
         self.sendBaseRequest(urlString: API_REPORT, params: nil, method: HTTP_GET, isRaw: false, showHud: true) { (success, dict, errorMessage) in
             
@@ -479,6 +479,12 @@ class ContentManager: NSObject {
     
     func batchSaveToLocal(_ dataList:[ReportModel], callBack:@escaping (_ success:Bool, _ message:String?)->Void)
     {
+        if(dataList.count == 0)
+        {
+            callBack(false, "saved List must be at least 1 record")
+            
+            return
+        }
         
         var insertSql = "INSERT INTO DataDetail(Id, Year, quarter, Value) VALUES "
         var idListString:String = ""

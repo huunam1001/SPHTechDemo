@@ -41,7 +41,7 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
     
     private func getReportFromSerever()
     {
-        CONTENT_MANAGER.getTotalReport { (success, reports, errroMessage) in
+        CONTENT_MANAGER.getTotalReportFromServer { (success, reports, errroMessage) in
             
             if(success)
             {
