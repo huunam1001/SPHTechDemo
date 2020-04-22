@@ -24,9 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CONTENT_MANAGER.copyDatabaseIfNeeded()
         
-        let sql = "INSERT INTO DataDetail(Id, Year, Quarter, Value) VALUES (1, 2018, 1, 0.32)"
+        let sql = "Select * From DataDetail"
         
-        CONTENT_MANAGER.executeSql(sql) { (success, errorMessage) in
+        CONTENT_MANAGER.selectDataWithSql(sql) { (success, qeryStatement, message) in
             
             print("Finish")
         }

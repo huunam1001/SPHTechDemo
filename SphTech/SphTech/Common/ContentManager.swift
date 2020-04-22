@@ -364,8 +364,10 @@ class ContentManager: NSObject {
             var success = false
             var message = ""
             
+            /// Check if we can open database
             if(sqlite3_open(self.dbPath, &self.db) == SQLITE_OK)
             {
+                /// Check executed status
                 if(sqlite3_exec(self.db, sqlString, nil, nil, nil) != SQLITE_OK)
                 {
                     message = "Fail to execute sql: \(sqlString)"
@@ -375,15 +377,56 @@ class ContentManager: NSObject {
                     success = true
                     message = "succed to execute sql: \(sqlString)"
                 }
+                
+                self.closeDb()
             }
             else
             {
                 message = "Can't open databae"
             }
+            
             /// Change to UI thread
             DispatchQueue.main.async(execute: {
                 
                 callBack(success, message)
+            })
+        }
+    }
+    
+    func selectDataWithSql(_ sqlString:String, callBack:@escaping (_ success:Bool, _ queryStatement:OpaquePointer?, _ message:String)->Void)
+    {
+        /// Change to background thread
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+            
+            var success = false
+            var message = ""
+            var queryStatement: OpaquePointer? = nil
+            
+            /// Check if we can open database
+            if(sqlite3_open(self.dbPath, &self.db) == SQLITE_OK)
+            {
+                if(sqlite3_prepare(self.db, sqlString, -1, &queryStatement, nil) != SQLITE_OK)
+                {
+                    message = "Fail to select with Sql: \(sqlString)"
+                }
+                else
+                {
+                    success = true
+                    message = "Succed to select with Sql: \(sqlString)"
+                }
+            }
+            else
+            {
+                message = "Can't open databae"
+            }
+            
+            /// Change to UI thread
+            DispatchQueue.main.async(execute: {
+                
+                callBack(success, queryStatement, message)
+                
+                sqlite3_finalize(queryStatement)
+                self.closeDb()
             })
         }
     }
