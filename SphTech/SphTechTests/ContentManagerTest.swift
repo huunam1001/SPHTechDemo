@@ -75,7 +75,94 @@ class ContentManagerTest: XCTestCase {
         waitForExpectations(timeout: 30.0) { (error) in
             print("Timed out")
         }
+    }
+    
+    func testCallApiWithInternalServerFail()
+    {
+        let e = expectation(description: "API finish process")
         
+        let statusCode = 500
+
+        MockDuck.registerRequestHandler { request in
+            return try! MockResponse(for: request, statusCode: statusCode)
+        }
+        
+        CONTENT_MANAGER.sendBaseRequest(urlString: API_REPORT, params: nil, method: HTTP_GET, isRaw: false, showHud: true) { (success, statusCode, dict, errorMessage) in
+            
+            XCTAssertFalse(success)
+            XCTAssertEqual(statusCode, 500)
+            XCTAssertNil(dict)
+            XCTAssertNotNil(errorMessage)
+            
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 30.0) { (error) in
+            print("Timed out")
+        }
+    }
+    
+    func testCallApiWithWrongReponse()
+    {
+        let e = expectation(description: "API finish process")
+        
+        let mockData = Data([1, 5, 2, 4])
+
+        MockDuck.registerRequestHandler { request in
+            return try! MockResponse(for: request, data: mockData)
+        }
+        
+        CONTENT_MANAGER.sendBaseRequest(urlString: API_REPORT, params: nil, method: HTTP_GET, isRaw: false, showHud: true) { (success, statusCode, dict, errorMessage) in
+            
+            XCTAssertFalse(success)
+            XCTAssertEqual(statusCode, API_ERROR_RESPONSE)
+            XCTAssertNil(dict)
+            XCTAssertNotNil(errorMessage)
+            
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 30.0) { (error) in
+            print("Timed out")
+        }
+    }
+        
+    func testGetTotalReportFromServerSuccess()
+    {
+        let e = expectation(description: "API finish process")
+        
+        CONTENT_MANAGER.getTotalReportFromServer { (success, reports, errorMessage) in
+            
+            XCTAssertTrue(success)
+            XCTAssertNotNil(reports)
+            XCTAssertNil(errorMessage)
+            
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 30.0) { (error) in
+            print("Timed out")
+        }
+    }
+    
+    func testGetTotalReportFromServerFail()
+    {
+        MockDuck.shouldFallbackToNetwork = false
+        
+        let e = expectation(description: "API finish process")
+        
+        CONTENT_MANAGER.getTotalReportFromServer { (success, reports, errorMessage) in
+            
+            XCTAssertFalse(success)
+            XCTAssertNil(reports)
+            XCTAssertNotNil(errorMessage)
+            
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 30.0) { (error) in
+            print("Timed out")
+        }
     }
     
     func testGetTotalReportFromServer()
@@ -102,6 +189,7 @@ class ContentManagerTest: XCTestCase {
             print("Timed out")
         }
     }
+    
     
     func testDatabasePath()
     {

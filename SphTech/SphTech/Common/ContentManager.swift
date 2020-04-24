@@ -124,14 +124,14 @@ class ContentManager: NSObject {
                         catch {
                             success = false;
                             statusCode = API_ERROR_RESPONSE
-                            message = "Respone data from server was NULL";
+                            message = "Respone data from server was wrong format";
                         }
                     }
                     else
                     {
                         success = false;
                         statusCode = API_ERROR_RESPONSE
-                        message = "Error parse data";
+                        message = "Respone data from server was NULL";
                     }
                 }
                 else {
