@@ -45,7 +45,8 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
             
             if(success)
             {
-                self.filterReport(reports!)
+                self.yearReportList = self.filterReport(reports!)
+                self.tblData.reloadData()
                 
                 self.saveDataToLocal(reports!)
             }
@@ -56,8 +57,10 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func filterReport(_ baseReport:[ReportModel])
+    func filterReport(_ baseReport:[ReportModel]) -> [YearReportModel]
     {
+        var filterList = [YearReportModel]()
+        
         let sortedList = baseReport.sorted { $0.reportId < $1.reportId}
         
         for reportRecord in sortedList
@@ -66,7 +69,7 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
             {
                 var foundYear: YearReportModel?  = nil
                 
-                for year in yearReportList
+                for year in filterList
                 {
                     if(reportRecord.year == year.year)
                     {
@@ -80,7 +83,7 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
                 {
                     foundYear = YearReportModel()
                     foundYear!.addReport(reportRecord)
-                    yearReportList.append(foundYear!)
+                    filterList.append(foundYear!)
                 }
                 else
                 {
@@ -89,7 +92,7 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
-        tblData.reloadData()
+        return filterList
     }
     
     private func saveDataToLocal(_ dataList:[ReportModel])
