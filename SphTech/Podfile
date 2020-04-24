@@ -1,0 +1,20 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '11.0'
+
+def shared_pods
+    pod 'MockDuck'
+end
+
+target "SphTech" do
+  
+    use_frameworks!
+    project './SphTech.xcodeproj'
+    shared_pods
+    
+    target  'SphTechTests' do
+      
+        inherit! :search_paths
+        
+        shared_pods
+    end
+end

@@ -7,10 +7,12 @@
 //
 
 import XCTest
+import MockDuck
 @testable import SphTech
 
 class ContentManagerTest: XCTestCase {
 
+    let testURL: URL! = URL(string: API_REPORT)
   
     func testBaseApiSuccess()
     {
@@ -52,6 +54,28 @@ class ContentManagerTest: XCTestCase {
         waitForExpectations(timeout: 30.0) { (error) in
             print("Timed out")
         }
+    }
+    
+    func testCallApiWithErrorConnection()
+    {
+        let e = expectation(description: "API finish process")
+        
+        MockDuck.shouldFallbackToNetwork = false
+        
+        CONTENT_MANAGER.sendBaseRequest(urlString: API_REPORT, params: nil, method: HTTP_GET, isRaw: false, showHud: true) { (success, statusCode, dict, errorMessage) in
+            
+            XCTAssertFalse(success)
+            XCTAssertNotEqual(statusCode, 200)
+            XCTAssertNil(dict)
+            XCTAssertNotNil(errorMessage)
+            
+            e.fulfill()
+        }
+        
+        waitForExpectations(timeout: 30.0) { (error) in
+            print("Timed out")
+        }
+        
     }
     
     func testGetTotalReportFromServer()

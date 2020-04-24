@@ -1,0 +1,16 @@
+PODS:
+  - MockDuck (1.0)
+
+DEPENDENCIES:
+  - MockDuck
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - MockDuck
+
+SPEC CHECKSUMS:
+  MockDuck: aed8f27cca7c8ebb372fc4f11f0ff9e96179b3ef
+
+PODFILE CHECKSUM: a776f6c7679537bd5c9b08a5bd9091ea5facd56d
+
+COCOAPODS: 1.8.4
