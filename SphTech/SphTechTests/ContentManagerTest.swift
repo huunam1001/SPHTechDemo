@@ -242,5 +242,36 @@ class ContentManagerTest: XCTestCase {
         }
     }
     
+    func testIntegrateDataSynced()
+    {
+        _ = CONTENT_MANAGER.copyDatabase()
+        
+        let e = expectation(description: "Synce data finish process")
+        
+        CONTENT_MANAGER.getAllReportFromLocal { (success, reports, apiErrorMessage) in
+            
+            if(success)
+            {
+                CONTENT_MANAGER.batchSaveToLocal(reports!) { (success, sqlMesage) in
+                    
+                    XCTAssertTrue(success)
+                }
+                
+                e.fulfill()
+            }
+            else
+            {
+                XCTAssertNil(reports)
+                XCTAssertNotNil(apiErrorMessage)
+                
+                e.fulfill()
+            }
+        }
+        
+        waitForExpectations(timeout: 30.0) { (error) in
+            print("Timed out")
+        }
+    }
+    
 }
 
