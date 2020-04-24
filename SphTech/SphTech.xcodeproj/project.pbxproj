@@ -25,7 +25,7 @@
 		689AC2012450328E0089A9F6 /* YearReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */; };
 		689AC20324504FA80089A9F6 /* ReportModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC20224504FA80089A9F6 /* ReportModelTests.swift */; };
 		689AC205245052B10089A9F6 /* YearReportModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689AC204245052B10089A9F6 /* YearReportModelTests.swift */; };
-		68AA4EC324507A1600ADA24C /* ContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA4EC224507A1600ADA24C /* ContentManager.swift */; };
+		68AA4EC324507A1600ADA24C /* ContentManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA4EC224507A1600ADA24C /* ContentManagerTest.swift */; };
 		68AA4ECB245093F400ADA24C /* YearReportViewControllerUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA4ECA245093F400ADA24C /* YearReportViewControllerUITest.swift */; };
 		68AA4ED12450A13200ADA24C /* YearReportViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AA4ED02450A13200ADA24C /* YearReportViewControllerTest.swift */; };
 /* End PBXBuildFile section */
@@ -73,7 +73,7 @@
 		689AC1FF2450328E0089A9F6 /* YearReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YearReportTableViewCell.xib; sourceTree = "<group>"; };
 		689AC20224504FA80089A9F6 /* ReportModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModelTests.swift; sourceTree = "<group>"; };
 		689AC204245052B10089A9F6 /* YearReportModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportModelTests.swift; sourceTree = "<group>"; };
-		68AA4EC224507A1600ADA24C /* ContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentManager.swift; sourceTree = "<group>"; };
+		68AA4EC224507A1600ADA24C /* ContentManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentManagerTest.swift; sourceTree = "<group>"; };
 		68AA4ECA245093F400ADA24C /* YearReportViewControllerUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportViewControllerUITest.swift; sourceTree = "<group>"; };
 		68AA4ED02450A13200ADA24C /* YearReportViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearReportViewControllerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,7 +146,7 @@
 				689AC1C3244FD48E0089A9F6 /* SphTechTests.swift */,
 				689AC20224504FA80089A9F6 /* ReportModelTests.swift */,
 				689AC204245052B10089A9F6 /* YearReportModelTests.swift */,
-				68AA4EC224507A1600ADA24C /* ContentManager.swift */,
+				68AA4EC224507A1600ADA24C /* ContentManagerTest.swift */,
 				68AA4ED02450A13200ADA24C /* YearReportViewControllerTest.swift */,
 				689AC1C5244FD48E0089A9F6 /* Info.plist */,
 			);
@@ -368,7 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				689AC1C4244FD48E0089A9F6 /* SphTechTests.swift in Sources */,
-				68AA4EC324507A1600ADA24C /* ContentManager.swift in Sources */,
+				68AA4EC324507A1600ADA24C /* ContentManagerTest.swift in Sources */,
 				689AC205245052B10089A9F6 /* YearReportModelTests.swift in Sources */,
 				68AA4ED12450A13200ADA24C /* YearReportViewControllerTest.swift in Sources */,
 				689AC20324504FA80089A9F6 /* ReportModelTests.swift in Sources */,

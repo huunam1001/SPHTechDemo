@@ -9,9 +9,9 @@
 import XCTest
 @testable import SphTech
 
-class ContentManager: XCTestCase {
+class ContentManagerTest: XCTestCase {
 
-    
+  
     func testBaseApiSuccess()
     {
         let e = expectation(description: "API finish process")
@@ -241,6 +241,6 @@ class ContentManager: XCTestCase {
             print("Timed out")
         }
     }
-
+    
 }
 
