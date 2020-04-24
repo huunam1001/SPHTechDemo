@@ -28,7 +28,7 @@ class ContentManager: NSObject {
     
     func getTotalReportFromServer(callBack:@escaping (_ success:Bool,_ reports:[ReportModel]?,_ message:String?)->Void)
     {
-        self.sendBaseRequest(urlString: API_REPORT, params: nil, method: HTTP_GET, isRaw: false, showHud: true) { (success, dict, errorMessage) in
+        self.sendBaseRequest(urlString: API_REPORT, params: nil, method: HTTP_GET, isRaw: false, showHud: true) { (success, statusCode, dict, errorMessage) in
             
             if(success)
             {
@@ -70,11 +70,11 @@ class ContentManager: NSObject {
     ///   - isRaw: Just affect with http method is differ GET. And this value depends on API input param defination
     ///   - showHud: Show loading when API calling
     ///   - completion: Data callback
-    func sendBaseRequest(urlString: String,params:[String:Any]?,method:String,isRaw:Bool,showHud:Bool,completion:@escaping (_ success:Bool,_ response:[String:Any]?,_ message:String?)->Void)
+    func sendBaseRequest(urlString: String, params:[String:Any]?, method:String, isRaw:Bool, showHud:Bool, completion:@escaping (_ success:Bool, _ statusCode:Int, _ response:[String:Any]?, _ message:String?) -> Void)
     {
         if(!self.isConnectedToNetwork())
         {
-            completion(false, nil, "No internet connection")
+            completion(false, NO_NETWORK_CODE, nil, "No internet connection")
             
             return
         }
@@ -99,6 +99,7 @@ class ContentManager: NSObject {
             var success: Bool
             var message: String?
             var json: [String:Any]?
+            var statusCode = API_ERROR_DEFAULT
             
             if error != nil {
                 success = false
@@ -108,18 +109,28 @@ class ContentManager: NSObject {
             else {
                 let httpRes = res as! HTTPURLResponse
                 
-                print(httpRes.statusCode)
+                statusCode = httpRes.statusCode
                 
-                if(httpRes.statusCode == 200 ) {
-                    do {
-                        json = try JSONSerialization.jsonObject(with: data!) as? [String:Any]
-                        success = true;
-                        message = nil;
-                        
-                        print("json: \(json!)")
+                if(httpRes.statusCode == API_SUCCESS_CODE ) {
+                                        
+                    if(data != nil)
+                    {
+                        do {
+                            json = try JSONSerialization.jsonObject(with: data!) as? [String:Any]
+                            success = true;
+                            message = nil;
+                            
+                        }
+                        catch {
+                            success = false;
+                            statusCode = API_ERROR_RESPONSE
+                            message = "Respone data from server was NULL";
+                        }
                     }
-                    catch {
+                    else
+                    {
                         success = false;
+                        statusCode = API_ERROR_RESPONSE
                         message = "Error parse data";
                     }
                 }
@@ -151,7 +162,7 @@ class ContentManager: NSObject {
                 /**
                  * Send datas to implementer
                  */
-                completion(success, json, message)
+                completion(success, statusCode, json, message)
             }
         }
         

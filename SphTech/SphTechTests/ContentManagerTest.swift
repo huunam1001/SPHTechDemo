@@ -18,9 +18,10 @@ class ContentManagerTest: XCTestCase {
         
         let urlString = "https://data.gov.sg/api/action/datastore_search?resource_id=a807b7ab-6cad-4aa6-87d0-e283a7353a0f&limit=100"
         
-        CONTENT_MANAGER.sendBaseRequest(urlString: urlString, params: nil, method: HTTP_GET, isRaw: false, showHud: false) { (success, dict, errorMessage) in
+        CONTENT_MANAGER.sendBaseRequest(urlString: urlString, params: nil, method: HTTP_GET, isRaw: false, showHud: false) { (success, statusCode, dict, errorMessage) in
             
             XCTAssertTrue(success)
+            XCTAssertEqual(statusCode, 200)
             XCTAssertNotNil(dict)
             XCTAssertNil(errorMessage)
             
@@ -38,9 +39,10 @@ class ContentManagerTest: XCTestCase {
         
         let urlString = "https://zzzzzzzdata.gov.sg/api/action/datastore_search?resource_id=a807b7ab-6cad-4aa6-87d0-e283a7353a0f&limit=100"
         
-        CONTENT_MANAGER.sendBaseRequest(urlString: urlString, params: nil, method: HTTP_GET, isRaw: false, showHud: false) { (success, dict, errorMessage) in
+        CONTENT_MANAGER.sendBaseRequest(urlString: urlString, params: nil, method: HTTP_GET, isRaw: false, showHud: false) { (success, statusCode, dict, errorMessage) in
             
             XCTAssertFalse(success)
+            XCTAssertNotEqual(statusCode, 200)
             XCTAssertNil(dict)
             XCTAssertNotNil(errorMessage)
             

@@ -41,6 +41,13 @@ let API_REPORT                      =   "https://data.gov.sg/api/action/datastor
 let HTTP_GET                        =   "GET"
 let HTTP_POST                       =   "POST"
 
+// MARK:- Network status
+
+let API_SUCCESS_CODE                =   200
+let NO_NETWORK_CODE                 =   1000
+let API_ERROR_DEFAULT               =   1001
+let API_ERROR_RESPONSE              =   1002
+
 // MARK:- Json Keys
 
 let KEY_RESULT                      =   "result"
