@@ -122,7 +122,8 @@ class YearReportViewController: UIViewController, UITableViewDelegate, UITableVi
             
             if(success)
             {
-                self.filterReport(reports!)
+                self.yearReportList = self.filterReport(reports!)
+                self.tblData.reloadData()
             }
             else
             {
